@@ -57,6 +57,11 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Design System Colors
+        cream: "hsl(var(--cream))",
+        "warm-beige": "hsl(var(--warm-beige))",
+        "dark-brown": "hsl(var(--dark-brown))",
+        "light-cream": "hsl(var(--light-cream))",
       },
       borderRadius: {
         lg: "var(--radius)",
