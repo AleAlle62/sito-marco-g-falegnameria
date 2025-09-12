@@ -1,74 +1,89 @@
-import galleriaKitchen from '@/assets/gallery-kitchen.jpg';
-import galleriaLiving from '@/assets/gallery-living.jpg';
-import galleriaBedroom from '@/assets/gallery-bedroom.jpg';
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+
+import galleriaKitchen from "@/assets/gallery-kitchen.jpg";
+import galleriaLiving from "@/assets/gallery-living.jpg";
+import galleriaBedroom from "@/assets/gallery-bedroom.jpg";
 
 const GalleriaSection = () => {
   const progetti = [
     {
       image: galleriaKitchen,
-      title: 'Cucina Moderna',
-      category: 'Cucine',
-      description: 'Design contemporaneo con materiali naturali'
+      title: "Cucina Moderna",
+      category: "Cucine",
+      description: "Design contemporaneo con materiali naturali",
     },
     {
       image: galleriaLiving,
-      title: 'Soggiorno Elegante',
-      category: 'Soggiorni',
-      description: 'Comfort e stile in perfetto equilibrio'
+      title: "Soggiorno Elegante",
+      category: "Soggiorni",
+      description: "Comfort e stile in perfetto equilibrio",
     },
     {
       image: galleriaBedroom,
-      title: 'Camera da Letto',
-      category: 'Camere',
-      description: 'Atmosfera rilassante e design raffinato'
+      title: "Camera da Letto",
+      category: "Camere",
+      description: "Atmosfera rilassante e design raffinato",
     },
     {
       image: galleriaKitchen,
-      title: 'Spazio Aperto',
-      category: 'Open Space',
-      description: 'Funzionalità e bellezza unite'
+      title: "Spazio Aperto",
+      category: "Open Space",
+      description: "Funzionalità e bellezza unite",
     },
     {
       image: galleriaLiving,
-      title: 'Studio Privato',
-      category: 'Uffici',
-      description: 'Produttività in un ambiente ispirante'
+      title: "Studio Privato",
+      category: "Uffici",
+      description: "Produttività in un ambiente ispirante",
     },
     {
       image: galleriaBedroom,
-      title: 'Bagno Luxury',
-      category: 'Bagni',
-      description: 'Relax e benessere quotidiano'
-    }
+      title: "Bagno Luxury",
+      category: "Bagni",
+      description: "Relax e benessere quotidiano",
+    },
   ];
 
+  const itemsPerPage = 6; // quante immagini mostri per pagina (3x2)
+  const [currentPage, setCurrentPage] = useState(0);
+
+  const totalPages = Math.ceil(progetti.length / itemsPerPage);
+
+  const handlePrev = () => {
+    setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
+  };
+
+  // Calcola quali progetti mostrare in questa pagina
+  const startIndex = currentPage * itemsPerPage;
+  const visibleProjects = progetti.slice(startIndex, startIndex + itemsPerPage);
+
   return (
-    <section id="galleria" className="py-20 bg-background">
+    <section id="galleria" className="py-20 bg-background relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-dark-brown mb-6">
             Galleria
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            La nostra realizzazioni
+            Le nostre realizzazioni
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button className="px-6 py-2 bg-dark-brown text-light-cream rounded-full">Tutti</button>
-            <button className="px-6 py-2 bg-warm-beige text-dark-brown rounded-full hover:bg-dark-brown hover:text-light-cream transition-colors">Cucine</button>
-            <button className="px-6 py-2 bg-warm-beige text-dark-brown rounded-full hover:bg-dark-brown hover:text-light-cream transition-colors">Soggiorni</button>
-            <button className="px-6 py-2 bg-warm-beige text-dark-brown rounded-full hover:bg-dark-brown hover:text-light-cream transition-colors">Camere</button>
-          </div>
         </div>
-        
+
+        {/* Griglia */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {progetti.map((progetto, index) => (
-            <div 
+          {visibleProjects.map((progetto, index) => (
+            <div
               key={index}
               className="group cursor-pointer overflow-hidden rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300"
             >
               <div className="relative overflow-hidden">
-                <img 
-                  src={progetto.image} 
+                <img
+                  src={progetto.image}
                   alt={progetto.title}
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
@@ -81,6 +96,25 @@ const GalleriaSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Frecce di navigazione */}
+        <div className="flex justify-center items-center mt-10 space-x-6">
+          <button
+            onClick={handlePrev}
+            className="p-3 bg-dark-brown/70 rounded-full text-white hover:bg-dark-brown transition"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <span className="text-dark-brown font-medium">
+            {currentPage + 1} / {totalPages}
+          </span>
+          <button
+            onClick={handleNext}
+            className="p-3 bg-dark-brown/70 rounded-full text-white hover:bg-dark-brown transition"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
         </div>
       </div>
     </section>
