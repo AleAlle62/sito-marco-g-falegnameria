@@ -82,7 +82,7 @@ const Footer = () => {
           </p>
           <p>
             <a
-              href="/privacy"
+              href="#/privacy"
               className="text-cream/60 hover:text-white transition-colors text-sm"
             >
               Privacy Policy
