@@ -1,27 +1,31 @@
-import { PenTool, Hammer, Wrench, Award } from 'lucide-react';
+import { PenTool, Hammer, Wrench, Award } from "lucide-react";
 
 const ServiziSection = () => {
   const servizi = [
     {
       icon: PenTool,
-      title: 'Progettazione',
-      description: 'Sviluppiamo progetti personalizzati secondo le tue esigenze specifiche e lo stile che desideri per i tuoi spazi.'
+      title: "Progettazione",
+      description:
+        "Sviluppiamo progetti personalizzati secondo le tue esigenze specifiche e lo stile che desideri per i tuoi spazi.",
     },
     {
       icon: Hammer,
-      title: 'Realizzazione',
-      description: 'Costruiamo i tuoi arredi con materiali di prima qualità e tecniche artigianali tradizionali per garantire durata e bellezza.'
+      title: "Realizzazione",
+      description:
+        "Costruiamo i tuoi arredi con materiali di prima qualità e tecniche artigianali tradizionali per garantire durata e bellezza.",
     },
     {
       icon: Wrench,
-      title: 'Installazione e montaggio',
-      description: 'Il nostro team di esperti si occupa dell\'installazione professionale di tutti gli arredi con precisione e cura.'
+      title: "Installazione e montaggio",
+      description:
+        "Il nostro team di esperti si occupa dell'installazione professionale di tutti gli arredi con precisione e cura.",
     },
     {
       icon: Award,
-      title: 'Assistenza',
-      description: 'Offriamo un servizio di assistenza completo e manutenzione per preservare nel tempo la bellezza dei tuoi arredi.'
-    }
+      title: "Assistenza",
+      description:
+        "Offriamo un servizio di assistenza completo e manutenzione per preservare nel tempo la bellezza dei tuoi arredi.",
+    },
   ];
 
   return (
@@ -32,24 +36,25 @@ const ServiziSection = () => {
             I Nostri Servizi
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Dalla progettazione all'assistenza post-vendita, 
-            ti accompagniamo in ogni fase del tuo progetto.
+            Dalla progettazione all'assistenza post-vendita, ti accompagniamo in
+            ogni fase del tuo progetto.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {servizi.map((servizio, index) => {
             const Icon = servizio.icon;
             return (
-              <div 
-                key={index}
-                className="text-center group"
-              >
-                <div className="w-20 h-20 bg-dark-brown rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90 transition-colors">
+              <div key={index} className="text-center group">
+                <div className="w-20 h-20 bg-[#6B3D0E] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/90 transition-colors">
                   <Icon className="h-10 w-10 text-light-cream" />
                 </div>
-                <h3 className="text-xl font-bold text-dark-brown mb-4">{servizio.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{servizio.description}</p>
+                <h3 className="text-xl font-bold text-dark-brown mb-4">
+                  {servizio.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {servizio.description}
+                </p>
               </div>
             );
           })}

@@ -2,16 +2,38 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import emailjs from "@emailjs/browser";
 
 const ContattiSection = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    nome: "",
+    email: "",
+    telefono: "",
+    oggetto: "",
+    messaggio: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Qui puoi inserire la logica di invio email
-    // Al momento mostriamo solo l'overlay
-    setIsSubmitted(true);
+    emailjs
+      .send(
+        "service_2t5zm8g",
+        "template_0xjplsz",
+        formData,
+        "OYNspbVVoIFXedYAQ"
+      )
+      .then(
+        () => setIsSubmitted(true),
+        (err) => alert("Errore nell'invio: " + err.text)
+      );
   };
 
   const closeOverlay = () => setIsSubmitted(false);
@@ -26,18 +48,45 @@ const ContattiSection = () => {
         {/* Form */}
         <div className="max-w-2xl mx-auto bg-card p-8 rounded-xl shadow-soft">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <Input placeholder="Nome" required />
-            <Input type="email" placeholder="Email" required />
-            <Input placeholder="Telefono" />
-            <Input placeholder="Oggetto" required />
+            <Input
+              name="nome"
+              placeholder="Nome"
+              required
+              value={formData.nome}
+              onChange={handleChange}
+            />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
+            <Input
+              name="telefono"
+              placeholder="Telefono"
+              value={formData.telefono}
+              onChange={handleChange}
+            />
+            <Input
+              name="oggetto"
+              placeholder="Oggetto"
+              required
+              value={formData.oggetto}
+              onChange={handleChange}
+            />
             <Textarea
+              name="messaggio"
               placeholder="Messaggio..."
               required
               className="min-h-[120px]"
+              value={formData.messaggio}
+              onChange={handleChange}
             />
             <Button
               type="submit"
-              className="w-full bg-dark-brown text-light-cream hover:bg-primary/90"
+              className="w-full bg-[#6B3D0E] text-light-cream hover:bg-primary/90"
             >
               Invia Messaggio
             </Button>

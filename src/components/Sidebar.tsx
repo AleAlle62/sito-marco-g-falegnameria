@@ -41,7 +41,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
             className="p-2 text-black hover:bg-primary/10 rounded-lg transition-colors"
             aria-label="Apri menu"
           >
-            <Menu className="h-6 w-6" />
+            <Menu className="h-6 w-6 text-[#6B3D0E]" />
           </button>
         </div>
       )}
@@ -52,7 +52,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
       {isOpen && (
         <div className="md:hidden fixed inset-0 bg-white z-50 flex flex-col transition-transform duration-300">
           {/* Top bar: logo, X, social */}
-          <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+          <div className="flex items-center justify-around  px-4 py-4 border-b border-gray-200">
             {/* Logo grande a sinistra */}
             <div>
               <img
@@ -63,32 +63,14 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
             </div>
 
             {/* X al centro */}
-            <div className="flex-1 flex justify-center">
+            <div className="flex-1 flex justify-end">
               <button
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-black hover:bg-primary/10 rounded-lg transition-colors"
                 aria-label="Chiudi menu"
               >
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6 text-[#6B3D0E]" />
               </button>
-            </div>
-
-            {/* Social a destra */}
-            <div className="flex space-x-4">
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Instagram className="h-6 w-6 text-black hover:text-[#6B3D0E]" />
-              </a>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Facebook className="h-6 w-6 text-black hover:text-[#6B3D0E]" />
-              </a>
             </div>
           </div>
 
@@ -98,7 +80,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
               <button
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
-                className="w-full text-left text-2xl font-thin text-black transition-colors hover:text-[#6B3D0E]"
+                className="w-full text-left text-4xl md:text-6xl font-bold text-black transition-colors hover:text-[#6B3D0E]"
               >
                 {item.label}
               </button>
@@ -118,7 +100,10 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
         {/* Logo desktop */}
         <div className="flex justify-center mt-6">
           {isOpen ? (
-            <img src="/img/logo_marco_dark.png" style={{ height: "120px" }} />
+            <img
+              src="/img/logo_marco_dark.png"
+              style={{ height: "100%", width: "100%" }}
+            />
           ) : (
             <img
               src="/img/logo_marco_small_dark.png"
@@ -137,7 +122,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
                 onClick={() => handleMenuClick(item.id)}
                 className="w-full flex items-center px-4 py-6 transition-colors justify-center group"
               >
-                <span className="text-3xl font-thin duration-300 group-hover:text-[#6B3D0E] group-hover:translate-x-2">
+                <span className="text-2xl md:text-2xl font-bold group-hover:text-[#6B3D0E] group-hover:translate-x-2">
                   {item.label}
                 </span>
               </button>
@@ -156,7 +141,11 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
             className="p-2 text-black rounded-lg transition-colors hover:bg-primary/10"
             aria-label={isOpen ? "Chiudi menu" : "Apri menu"}
           >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {isOpen ? (
+              <X className="h-6 w-6 text-[#6B3D0E]" />
+            ) : (
+              <Menu className="h-6 w-6 text-[#6B3D0E]" />
+            )}
           </button>
         </div>
       </div>
