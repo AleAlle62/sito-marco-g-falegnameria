@@ -18,9 +18,9 @@ const HeroSection = () => {
               unendo la maestria artigianale tradizionale con le più moderne
               tendenze del design contemporaneo.
             </p>
-            <button className="px-8 py-4 bg-[#6B3D0E] text-light-cream rounded-lg hover:bg-primary/90 transition-colors font-medium">
+            {/* <button className="px-8 py-4 bg-[#6B3D0E] text-light-cream rounded-lg hover:bg-primary/90 transition-colors font-medium">
               Scopri i nostri progetti
-            </button>
+            </button> */}
           </div>
 
           {/* Image */}
