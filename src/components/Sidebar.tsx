@@ -114,15 +114,21 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
         </div>
 
         {/* Menu desktop */}
+        {/* Menu desktop */}
         {isOpen && (
           <nav className="mt-8 flex-1 flex flex-col items-center">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleMenuClick(item.id)}
-                className="w-full flex items-center px-4 py-6 transition-colors justify-center group"
+                className="w-full flex items-center px-4 py-6 justify-center group"
               >
-                <span className="text-2xl md:text-4xl font-bold group-hover:text-[#6B3D0E] group-hover:translate-x-2">
+                <span
+                  className="text-2xl md:text-4xl font-bold 
+                         group-hover:text-[#6B3D0E] 
+                         group-hover:translate-x-2 
+                         transition-all duration-300 ease-in-out"
+                >
                   {item.label}
                 </span>
               </button>
