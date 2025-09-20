@@ -7,15 +7,13 @@ const ChiSiamoSection = () => {
             Chi Siamo
           </h2>
           <div className="prose prose-lg mx-auto text-muted-foreground">
-            <p className="mb-6 text-xl leading-relaxed">
-              Artigianato d'eccellenza nato nel 1970 dall'esperienza e dall'ingegno della tradizione 
-              artigianale trentina ma senza mai dimenticare lo sguardo contemporaneo 
-              su materiali e tecniche di lavorazione.
-            </p>
             <p className="text-lg leading-relaxed">
-              La nostra esperienza si basa su tre pilastri fondamentali: 
-              la qualità dei materiali, l'attenzione ai dettagli e l'innovazione continua. 
-              Ogni pezzo che realizziamo racconta una storia di passione e dedizione.
+              Falegnameria Gianni nasce negli anni ‘60 a Lucca dalla passione di
+              Giuseppe e Saturno che fin da subito hanno unito esperienze
+              ingegno all’artigianato, senza mai dimenticare tecniche e
+              materiali innovativi. Tramandando il tutto di generazione in . La
+              nostra missione è creare arredi di qualità su misura che uniscano:
+              funzionalità bellezza e ecosostenibilitá
             </p>
           </div>
         </div>

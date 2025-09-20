@@ -1,9 +1,9 @@
-import { PenTool, Hammer, Wrench, Award } from "lucide-react";
+import { PenLine, Hammer, Wrench, Award } from "lucide-react";
 
 const ServiziSection = () => {
   const servizi = [
     {
-      icon: PenTool,
+      icon: PenLine,
       title: "Progettazione",
       description:
         "Sviluppiamo progetti personalizzati secondo le tue esigenze specifiche e lo stile che desideri per i tuoi spazi.",
@@ -18,7 +18,7 @@ const ServiziSection = () => {
       icon: Wrench,
       title: "Installazione e montaggio",
       description:
-        "Il nostro team di esperti si occupa dell'installazione professionale di tutti gli arredi con precisione e cura.",
+        "ci occuperemo con cura dell’installazione del vostro progetto per un funzionamento corretto e duratura",
     },
     {
       icon: Award,

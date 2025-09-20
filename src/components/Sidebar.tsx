@@ -122,7 +122,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
                 onClick={() => handleMenuClick(item.id)}
                 className="w-full flex items-center px-4 py-6 transition-colors justify-center group"
               >
-                <span className="text-2xl md:text-2xl font-bold group-hover:text-[#6B3D0E] group-hover:translate-x-2">
+                <span className="text-2xl md:text-4xl font-bold group-hover:text-[#6B3D0E] group-hover:translate-x-2">
                   {item.label}
                 </span>
               </button>

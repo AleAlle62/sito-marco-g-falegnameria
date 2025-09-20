@@ -1,84 +1,72 @@
+import { MessageCircle, Mail, Facebook, Instagram } from "lucide-react";
+
 const Footer = () => {
   return (
     <footer className="bg-[#6B3D0E] text-light-cream py-12">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Company Info */}
-          <div>
-            <h3 className="text-2xl font-bold mb-4">Gianni</h3>
-            <p className="text-cream/80 leading-relaxed mb-4">
-              Arredamenti di qualità dal 1970. Tradizione artigianale e design
-              contemporaneo per i tuoi spazi.
-            </p>
-            <p className="text-cream/60 text-sm">
-              P.IVA: 01234567890
-              <br />
-              Cod. Fisc: 01234567890
-            </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Links Rapidi</h4>
-            <ul className="space-y-2 text-cream/80">
-              <li>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+          {/* Colonna sinistra: Social cliccabili */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold mb-4">Contatti Rapidi</h4>
+            <ul className="space-y-2">
+              <li className="flex items-center gap-2">
+                <MessageCircle className="w-5 h-5" />
                 <a
-                  href="#chi-siamo"
-                  className="hover:text-white transition-colors"
+                  href="https://wa.me/391234567890"
+                  className="hover:text-white"
                 >
-                  Chi Siamo
+                  [Whatsapp] +39 123 45 67 890
                 </a>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
+                <Mail className="w-5 h-5" />
                 <a
-                  href="#valori"
-                  className="hover:text-white transition-colors"
+                  href="mailto:info@gianniarredamenti.it"
+                  className="hover:text-white"
                 >
-                  I Nostri Valori
+                  [Mail] info@gianniarredamenti.it
                 </a>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
+                <Facebook className="w-5 h-5" />
                 <a
-                  href="#galleria"
-                  className="hover:text-white transition-colors"
+                  href="https://www.facebook.com/tuaprofilo"
+                  target="_blank"
+                  className="hover:text-white"
                 >
-                  Galleria
+                  [Facebook] /tuaprofilo
                 </a>
               </li>
-              <li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-5 h-5" />
                 <a
-                  href="#servizi"
-                  className="hover:text-white transition-colors"
+                  href="https://www.instagram.com/tuoprofilo"
+                  target="_blank"
+                  className="hover:text-white"
                 >
-                  Servizi
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contatti"
-                  className="hover:text-white transition-colors"
-                >
-                  Contatti
+                  [Instagram] /tuaprofilo
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Contatti</h4>
-            <div className="space-y-2 text-cream/80">
-              <p>Via della Mela, 14B</p>
-              <p>38010 - Tuenno (TN)</p>
-              <p>Tel: +39 0461 982 765</p>
-              <p>Email: info@gianniarredamenti.it</p>
-            </div>
+          {/* Colonna centrale: vuota */}
+          <div></div>
+
+          {/* Colonna destra: dati ufficiali */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold mb-4">Dati Ufficiali</h4>
+            <p>Falegnameria Gianni SNC</p>
+            <p>Via delle Pierone, 776/B</p>
+            <p>55100 Lucca, Toscana, Italia</p>
+            <p>P.IVA: 01234567890</p>
+            <p>Cod. Fisc: 01234567890</p>
           </div>
         </div>
 
         <div className="border-t border-cream/20 mt-8 pt-8 text-center space-y-2">
           <p className="text-cream/60">
-            © 2024 Gianni Arredamenti. Tutti i diritti riservati.
+            © 2024 Falegnameria Gianni SNC. Tutti i diritti riservati.
           </p>
           <p>
             <a
