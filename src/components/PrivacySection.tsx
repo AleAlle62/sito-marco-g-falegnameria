@@ -24,7 +24,7 @@ const Privacy: React.FC = () => {
             href="mailto:info@gianniarredamenti.it"
             className="text-[#6B3D0E] font-semibold hover:underline"
           >
-            info@gianniarredamenti.it
+            falegnameriagianni.snc@gmail.com
           </a>
           .
         </p>
