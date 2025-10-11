@@ -8,13 +8,13 @@ import galleriaBedroom from "@/assets/gallery-bedroom.jpg";
 const GalleriaSection = () => {
   const progetti = [
     {
-      image: "/public/img/foto_falegnameria/IMG_3268.jpg",
+      image: "/img/foto_falegnameria/IMG_3268.jpg",
       title: "Ufficio Direzionale",
       category: "Pietrasanta",
       description: "",
     },
     {
-      image: "/public/img/foto_falegnameria/IMG_5038.jpg",
+      image: "/img/foto_falegnameria/IMG_5038.jpg",
       title: "Studio Legale",
       category: "Pietrasanta",
       description: "",
@@ -32,31 +32,31 @@ const GalleriaSection = () => {
       description: "",
     },
     {
-      image: "/public/img/vetrine/IMG_6347.jpg",
+      image: "/img/vetrine/IMG_6347.jpg",
       title: "Vetrina su Misura",
       category: "Centro Storico - Lucca",
       description: "",
     },
     {
-      image: "/public/img/portone/IMG_5561.jpg",
+      image: "/img/portone/IMG_5561.jpg",
       title: "Restauro Portone",
       category: "Pietrasanta",
       description: "",
     },
     {
-      image: "/public/img/lizzano/Lizzano2.jpg",
+      image: "/img/lizzano/Lizzano2.jpg",
       title: "Soggiorno",
       category: "Lizzano",
       description: "",
     },
     {
-      image: "/public/img/parapetto/IMG_4084_ottimizzata_resized.jpg",
+      image: "/img/parapetto/IMG_4084_ottimizzata_resized.jpg",
       title: "Mobile Parapetto",
       category: "Lucca",
       description: "",
     },
     {
-      image: "/public/img/foto_falegnameria/IMG_3474.jpg",
+      image: "/img/foto_falegnameria/IMG_3474.jpg",
       title: "Studio Legale",
       category: "Pietrasanta",
       description: "",
@@ -74,7 +74,7 @@ const GalleriaSection = () => {
       description: "",
     },
     {
-      image: "/public/img/foto_falegnameria/IMG_0038_risultato.jpg",
+      image: "/img/foto_falegnameria/IMG_0038_risultato.jpg",
       title: "Veranda",
       category: "Lucca",
       description: "",
