@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import galleriaKitchen from "@/assets/gallery-kitchen.jpg";
-import galleriaLiving from "@/assets/gallery-living.jpg";
-import galleriaBedroom from "@/assets/gallery-bedroom.jpg";
-
 const GalleriaSection = () => {
   const progetti = [
     {
@@ -81,20 +77,21 @@ const GalleriaSection = () => {
     },
   ];
 
-  const itemsPerPage = 6; // quante immagini mostri per pagina (3x2)
+  const itemsPerPage = 6; // quante immagini mostri per pagina
   const [currentPage, setCurrentPage] = useState(0);
+
+  // Stato di caricamento per ogni immagine
+  const [loadedImages, setLoadedImages] = useState<boolean[]>(
+    Array(progetti.length).fill(false)
+  );
 
   const totalPages = Math.ceil(progetti.length / itemsPerPage);
 
-  const handlePrev = () => {
+  const handlePrev = () =>
     setCurrentPage((prev) => (prev === 0 ? totalPages - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
+  const handleNext = () =>
     setCurrentPage((prev) => (prev === totalPages - 1 ? 0 : prev + 1));
-  };
 
-  // Calcola quali progetti mostrare in questa pagina
   const startIndex = currentPage * itemsPerPage;
   const visibleProjects = progetti.slice(startIndex, startIndex + itemsPerPage);
 
@@ -110,35 +107,63 @@ const GalleriaSection = () => {
           </p>
         </div>
 
-        {/* Griglia */}
+        {/* Griglia immagini */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleProjects.map((progetto, index) => (
-            <div
-              key={index}
-              className="group cursor-pointer overflow-hidden rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={progetto.image}
-                  alt={progetto.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <p className="text-sm font-medium">{progetto.category}</p>
-                  <h3 className="text-lg font-bold">{progetto.title}</h3>
-                  <p className="text-sm">{progetto.description}</p>
+          {visibleProjects.map((progetto, index) => {
+            const globalIndex = startIndex + index;
+            const isLoaded = loadedImages[globalIndex];
+
+            return (
+              <div
+                key={globalIndex}
+                className="group cursor-pointer overflow-hidden rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300"
+              >
+                <div className="relative overflow-hidden h-64">
+                  {/* Skeleton */}
+                  {!isLoaded && (
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-xl" />
+                  )}
+
+                  {/* Immagine reale */}
+                  <img
+                    src={progetto.image}
+                    alt={progetto.title}
+                    className={`w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500 ${
+                      isLoaded ? "opacity-100" : "opacity-0"
+                    }`}
+                    onLoad={() =>
+                      setLoadedImages((prev) => {
+                        const newState = [...prev];
+                        newState[globalIndex] = true;
+                        return newState;
+                      })
+                    }
+                  />
+
+                  {/* Overlay info */}
+                  {isLoaded && (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p className="text-sm font-medium">
+                          {progetto.category}
+                        </p>
+                        <h3 className="text-lg font-bold">{progetto.title}</h3>
+                        <p className="text-sm">{progetto.description}</p>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Frecce di navigazione */}
         <div className="flex justify-center items-center mt-10 space-x-6">
           <button
             onClick={handlePrev}
-            className="p-3 bg-dark-brown/70 rounded-full text-white hover:bg-dark-brown transition"
+            className="p-3 rounded-full text-brown transition hover:bg-brown/10"
           >
             <ChevronLeft className="h-6 w-6" />
           </button>
@@ -147,7 +172,7 @@ const GalleriaSection = () => {
           </span>
           <button
             onClick={handleNext}
-            className="p-3 bg-dark-brown/70 rounded-full text-white hover:bg-dark-brown transition"
+            className="p-3 rounded-full text-brown transition hover:bg-brown/10"
           >
             <ChevronRight className="h-6 w-6" />
           </button>

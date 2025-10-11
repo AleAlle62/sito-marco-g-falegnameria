@@ -1,15 +1,18 @@
+import { useState } from "react";
 import heroImage from "@/assets/hero-chair.jpg";
 
 const HeroSection = () => {
+  const [isLoaded, setIsLoaded] = useState(false); // stato caricamento immagine
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center bg-gradient-to-br from-light-cream to-warm-beige"
+      className="flex items-center bg-gradient-to-br from-light-cream to-warm-beige"
     >
       {/* Wrapper principale */}
-      <div className="flex flex-col lg:flex-row items-center justify-between w-full px-6 gap-12 mx-auto">
-        {/* Contenuto testuale, occupa meno spazio */}
-        <div className="flex-1 max-w-[400px]">
+      <div className="flex flex-col lg:flex-row items-center justify-between w-full px-6 py-10 gap-12 mx-auto">
+        {/* Contenuto testuale */}
+        <div>
           <h1 className="text-4xl md:text-6xl font-bold text-dark-brown leading-tight mb-6">
             Tradizione artigianale e design contemporaneo
           </h1>
@@ -20,12 +23,20 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Immagine, occupa il resto dello spazio */}
-        <div className="flex-1 flex justify-center">
+        {/* Immagine con skeleton */}
+        <div className="flex-1 flex justify-center relative">
+          {/* Skeleton */}
+          {!isLoaded && (
+            <div className="absolute inset-0 w-full h-full bg-gray-200 animate-pulse rounded-2xl" />
+          )}
+
           <img
-            src="/img/lizzano/Lizzano2.jpg"
+            src={heroImage}
             alt="Poltrona moderna di design"
-            className="w-full h-auto object-cover rounded-2xl shadow-elegant"
+            className={`w-full h-auto object-cover rounded-2xl shadow-elegant transition-opacity duration-500 ${
+              isLoaded ? "opacity-100" : "opacity-0"
+            }`}
+            onLoad={() => setIsLoaded(true)}
           />
         </div>
       </div>

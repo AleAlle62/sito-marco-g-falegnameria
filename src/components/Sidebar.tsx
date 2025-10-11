@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { Instagram, Facebook } from "lucide-react";
+import { Menu, X, Instagram, Facebook } from "lucide-react";
 
 interface SidebarProps {
   onNavigate: (section: string) => void;
@@ -24,7 +23,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
   return (
     <>
       {/* ------------------- */}
-      {/* Mobile: logo piccolo + hamburger chiusa */}
+      {/* MOBILE: topbar chiusa */}
       {/* ------------------- */}
       {!isOpen && (
         <div className="md:hidden fixed top-0 left-0 right-0 bg-white h-16 z-50 flex items-center justify-between px-4 shadow-md">
@@ -34,6 +33,13 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
             alt="Logo"
             style={{ height: "32px" }}
           />
+
+          {/* Testo centrale BANANA */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <span className="text-1xl font-bold text-[#6B3D0E] tracking-wide rotate-270 whitespace-nowrap ">
+              Gianni Falegnameria
+            </span>
+          </div>
 
           {/* Hamburger */}
           <button
@@ -47,31 +53,27 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
       )}
 
       {/* ------------------- */}
-      {/* Mobile: overlay aperta */}
+      {/* MOBILE: overlay aperta */}
       {/* ------------------- */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 bg-white z-50 flex flex-col transition-transform duration-300">
-          {/* Top bar: logo, X, social */}
-          <div className="flex items-center justify-around  px-4 py-4 border-b border-gray-200">
-            {/* Logo grande a sinistra */}
-            <div>
-              <img
-                src="/img/logo_marco_dark.png"
-                alt="Logo"
-                style={{ height: "80px" }}
-              />
-            </div>
+          {/* Top bar con logo e X */}
+          <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+            {/* Logo */}
+            <img
+              src="/img/logo_marco_dark.png"
+              alt="Logo"
+              style={{ height: "60px" }}
+            />
 
-            {/* X al centro */}
-            <div className="flex-1 flex justify-end">
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 text-black hover:bg-primary/10 rounded-lg transition-colors"
-                aria-label="Chiudi menu"
-              >
-                <X className="h-6 w-6 text-[#6B3D0E]" />
-              </button>
-            </div>
+            {/* Bottone chiusura */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-black hover:bg-primary/10 rounded-lg transition-colors"
+              aria-label="Chiudi menu"
+            >
+              <X className="h-6 w-6 text-[#6B3D0E]" />
+            </button>
           </div>
 
           {/* Menu centrale */}
@@ -86,11 +88,21 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
               </button>
             ))}
           </nav>
+
+          {/* Social footer opzionale */}
+          <div className="flex justify-center space-x-6 py-4 border-t border-gray-200">
+            <a href="#" aria-label="Instagram">
+              <Instagram className="h-6 w-6 text-[#6B3D0E]" />
+            </a>
+            <a href="#" aria-label="Facebook">
+              <Facebook className="h-6 w-6 text-[#6B3D0E]" />
+            </a>
+          </div>
         </div>
       )}
 
       {/* ------------------- */}
-      {/* Desktop sidebar */}
+      {/* DESKTOP SIDEBAR */}
       {/* ------------------- */}
       <div
         className={`hidden md:flex fixed top-0 left-0 h-full bg-white z-50 flex-col transition-all duration-300 ${
@@ -102,7 +114,8 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
           {isOpen ? (
             <img
               src="/img/logo_marco_dark.png"
-              style={{ height: "100%", width: "100%" }}
+              alt="Logo grande"
+              className="w-3/4 h-auto"
             />
           ) : (
             <img
@@ -113,8 +126,16 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
           )}
         </div>
 
-        {/* Menu desktop */}
-        {/* Menu desktop */}
+        {/* BANANA al centro (solo quando sidebar chiusa) */}
+        {!isOpen && (
+          <div className="flex-1 flex items-center justify-center">
+            <span className="text-1xl font-bold text-[#6B3D0E] tracking-wide rotate-270 whitespace-nowrap ">
+              Gianni Falegnameria
+            </span>
+          </div>
+        )}
+
+        {/* Menu desktop (solo aperta) */}
         {isOpen && (
           <nav className="mt-8 flex-1 flex flex-col items-center">
             {menuItems.map((item) => (
@@ -136,7 +157,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
           </nav>
         )}
 
-        {/* Hamburger desktop */}
+        {/* Pulsante hamburger / chiudi */}
         <div
           className={`flex items-center p-4 ${
             isOpen ? "justify-start mt-0" : "justify-start mt-auto"
