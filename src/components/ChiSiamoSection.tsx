@@ -11,9 +11,9 @@ const ChiSiamoSection = () => {
               Falegnameria Gianni nasce negli anni ‘60 a Lucca dalla passione di
               Giuseppe e Saturno che fin da subito hanno unito esperienze
               ingegno all’artigianato, senza mai dimenticare tecniche e
-              materiali innovativi. Tramandando il tutto di generazione in . La
-              nostra missione è creare arredi di qualità su misura che uniscano:
-              funzionalità bellezza e ecosostenibilitá
+              materiali innovativi. Tramandando il tutto di generazione in
+              generazione. La nostra missione è creare arredi di qualità su
+              misura che uniscano: funzionalità bellezza e ecosostenibilitá
             </p>
           </div>
         </div>
