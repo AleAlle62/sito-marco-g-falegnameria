@@ -118,7 +118,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
               className="w-4/4 h-auto"
             />
           ) : (
-            <img src="/img/logo_marco_small_dark.png" alt="Logo piccolo" />
+            <img src="/img/logo_marco_small_dark.png" alt="Logo" />
           )}
         </div>
 

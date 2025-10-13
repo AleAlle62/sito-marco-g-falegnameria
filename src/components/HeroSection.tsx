@@ -23,7 +23,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="flex items-center justify-center bg-gradient-to-br from-light-cream to-warm-beige px-6 min-h-[70vh] lg:min-h-screen py-10 lg:py-0"
+      className="flex items-center justify-center bg-gradient-to-br from-light-cream to-warm-beige px-6 min-h-[70vh] lg:min-h-screen py-10 lg:py-0 overflow-hidden"
     >
       {/* Wrapper principale */}
       <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-[1200px] gap-12">
@@ -40,7 +40,7 @@ const HeroSection = () => {
         </div>
 
         {/* Carosello doppia riga */}
-        <div className="flex-1 flex flex-col justify-center max-w-[600px] gap-4">
+        <div className="flex-1 flex flex-col justify-center w-full lg:max-w-[600px] gap-4 overflow-hidden">
           <style>{`
             @keyframes scrollLeft {
               0% {
@@ -67,12 +67,12 @@ const HeroSection = () => {
           `}</style>
 
           {/* Riga superiore - scorre da sinistra a destra */}
-          <div className="overflow-hidden">
-            <div className="flex gap-4 animate-scroll-right">
+          <div className="overflow-hidden w-full">
+            <div className="flex gap-3 md:gap-4 animate-scroll-right">
               {topImagesLoop.map((image, index) => (
                 <div
                   key={`top-${index}`}
-                  className="flex-shrink-0 w-[180px] h-[240px] relative"
+                  className="flex-shrink-0 w-[140px] h-[180px] md:w-[180px] md:h-[240px] relative"
                 >
                   <img
                     src={image.src}
@@ -86,12 +86,12 @@ const HeroSection = () => {
           </div>
 
           {/* Riga inferiore - scorre da destra a sinistra */}
-          <div className="overflow-hidden">
-            <div className="flex gap-4 animate-scroll-left">
+          <div className="overflow-hidden w-full">
+            <div className="flex gap-3 md:gap-4 animate-scroll-left">
               {bottomImagesLoop.map((image, index) => (
                 <div
                   key={`bottom-${index}`}
-                  className="flex-shrink-0 w-[180px] h-[240px] relative"
+                  className="flex-shrink-0 w-[140px] h-[180px] md:w-[180px] md:h-[240px] relative"
                 >
                   <img
                     src={image.src}
