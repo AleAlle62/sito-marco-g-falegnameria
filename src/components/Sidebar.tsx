@@ -31,13 +31,13 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
           <img
             src="/img/logo_marco_small_dark.png"
             alt="Logo"
-            style={{ height: "32px" }}
+            style={{ height: "132px" }}
           />
 
           {/* Testo centrale BANANA */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <span className="text-1xl font-bold text-[#6B3D0E] tracking-wide rotate-270 whitespace-nowrap ">
-              Gianni Falegnameria
+              Falegnameria Gianni
             </span>
           </div>
 
@@ -115,14 +115,10 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
             <img
               src="/img/logo_marco_dark.png"
               alt="Logo grande"
-              className="w-3/4 h-auto"
+              className="w-4/4 h-auto"
             />
           ) : (
-            <img
-              src="/img/logo_marco_small_dark.png"
-              alt="Logo piccolo"
-              style={{ height: "40px" }}
-            />
+            <img src="/img/logo_marco_small_dark.png" alt="Logo piccolo" />
           )}
         </div>
 
@@ -130,7 +126,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
         {!isOpen && (
           <div className="flex-1 flex items-center justify-center">
             <span className="text-1xl font-bold text-[#6B3D0E] tracking-wide rotate-270 whitespace-nowrap ">
-              Gianni Falegnameria
+              Falegnameria Gianni
             </span>
           </div>
         )}

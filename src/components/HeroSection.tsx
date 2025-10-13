@@ -3,6 +3,23 @@ import { useState } from "react";
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Array di immagini - dividile in due righe
+  const topImages = [
+    { src: "/img/lizzano/Lizzano2.jpg", alt: "Poltrona moderna di design" },
+    { src: "/img/lizzano/Lizzano3.jpg", alt: "Arredo contemporaneo" },
+    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
+  ];
+
+  const bottomImages = [
+    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
+    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
+    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
+  ];
+
+  // Duplica per loop infinito
+  const topImagesLoop = [...topImages, ...topImages, ...topImages];
+  const bottomImagesLoop = [...bottomImages, ...bottomImages, ...bottomImages];
+
   return (
     <section
       id="home"
@@ -16,27 +33,75 @@ const HeroSection = () => {
             Tradizione artigianale e design contemporaneo
           </h1>
           <p className="text-xl text-gray-500 mb-8 leading-relaxed">
-            Da oltre sessant’anni, realizziamo soluzioni di arredo uniche,
+            Da oltre sessant'anni, realizziamo soluzioni di arredo uniche,
             unendo alla maestria artigianale le più moderne tendenze del design
             contemporaneo.
           </p>
         </div>
 
-        {/* Immagine con skeleton */}
-        <div className="flex-1 flex justify-center max-w-[600px] relative">
-          {/* Skeleton loader */}
-          {!isLoaded && (
-            <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-2xl" />
-          )}
+        {/* Carosello doppia riga */}
+        <div className="flex-1 flex flex-col justify-center max-w-[600px] gap-4">
+          <style>{`
+            @keyframes scrollLeft {
+              0% {
+                transform: translateX(0);
+              }
+              100% {
+                transform: translateX(-33.333%);
+              }
+            }
+            @keyframes scrollRight {
+              0% {
+                transform: translateX(-33.333%);
+              }
+              100% {
+                transform: translateX(0);
+              }
+            }
+            .animate-scroll-left {
+              animation: scrollLeft 20s linear infinite;
+            }
+            .animate-scroll-right {
+              animation: scrollRight 20s linear infinite;
+            }
+          `}</style>
 
-          <img
-            src="/img/lizzano/Lizzano2.jpg"
-            alt="Poltrona moderna di design"
-            className={`w-full h-auto object-cover rounded-2xl shadow-elegant transition-opacity duration-500 ${
-              isLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            onLoad={() => setIsLoaded(true)}
-          />
+          {/* Riga superiore - scorre da sinistra a destra */}
+          <div className="overflow-hidden">
+            <div className="flex gap-4 animate-scroll-right">
+              {topImagesLoop.map((image, index) => (
+                <div
+                  key={`top-${index}`}
+                  className="flex-shrink-0 w-[180px] h-[240px] relative"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover rounded-xl shadow-lg"
+                    onLoad={() => index === 0 && setIsLoaded(true)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Riga inferiore - scorre da destra a sinistra */}
+          <div className="overflow-hidden">
+            <div className="flex gap-4 animate-scroll-left">
+              {bottomImagesLoop.map((image, index) => (
+                <div
+                  key={`bottom-${index}`}
+                  className="flex-shrink-0 w-[180px] h-[240px] relative"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover rounded-xl shadow-lg"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
