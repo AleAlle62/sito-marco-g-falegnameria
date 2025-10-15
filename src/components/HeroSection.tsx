@@ -8,7 +8,6 @@ const HeroSection = () => {
     { src: "/img/lizzano/Lizzano3.jpg", alt: "Arredo contemporaneo" },
     { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
     { src: "/img/lizzano/Lizzano5.jpg", alt: "Artigianato italiano" },
-    { src: "/img/lizzano/Lizzano6.jpg", alt: "Dettagli raffinati" },
   ];
 
   // Stato per le 4 immagini attualmente visibili
