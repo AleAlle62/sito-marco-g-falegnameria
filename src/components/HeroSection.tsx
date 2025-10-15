@@ -1,31 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const HeroSection = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Array di immagini - dividile in due righe
-  const topImages = [
+  // Tutte le immagini disponibili
+  const allImages = [
+    { src: "/img/lizzano/Lizzano1.jpg", alt: "Design contemporaneo" },
     { src: "/img/lizzano/Lizzano2.jpg", alt: "Poltrona moderna di design" },
     { src: "/img/lizzano/Lizzano3.jpg", alt: "Arredo contemporaneo" },
     { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
+    { src: "/img/lizzano/Lizzano5.jpg", alt: "Artigianato italiano" },
+    { src: "/img/lizzano/Lizzano6.jpg", alt: "Dettagli raffinati" },
   ];
 
-  const bottomImages = [
-    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
-    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
-    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
-  ];
+  // Stato per le 4 immagini attualmente visibili
+  const [visibleImages, setVisibleImages] = useState(allImages.slice(0, 4));
 
-  // Duplica per loop infinito
-  const topImagesLoop = [...topImages, ...topImages, ...topImages];
-  const bottomImagesLoop = [...bottomImages, ...bottomImages, ...bottomImages];
+  // Indice per tenere traccia di dove siamo nell’elenco
+  const [nextIndex, setNextIndex] = useState(4);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // scegli un'immagine casuale tra le 4 da sostituire
+      const randomSlot = Math.floor(Math.random() * 4);
+      const newImages = [...visibleImages];
+
+      // prendi la prossima immagine (ciclo)
+      const newImage = allImages[nextIndex % allImages.length];
+
+      newImages[randomSlot] = newImage;
+      setVisibleImages(newImages);
+      setNextIndex((prev) => (prev + 1) % allImages.length);
+    }, 3000); // ogni 3 secondi cambia una
+
+    return () => clearInterval(interval);
+  }, [visibleImages, nextIndex]);
 
   return (
     <section
       id="home"
       className="flex items-center justify-center bg-gradient-to-br from-light-cream to-warm-beige px-6 min-h-[70vh] lg:min-h-screen py-10 lg:py-0 overflow-hidden"
     >
-      {/* Wrapper principale */}
       <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-[1200px] gap-12">
         {/* Contenuto testuale */}
         <div className="flex-1 max-w-[500px] text-center lg:text-left">
@@ -39,72 +52,42 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Carosello doppia riga */}
-        <div className="flex-1 flex flex-col justify-center w-full lg:max-w-[600px] gap-4 overflow-hidden">
-          <style>{`
-            @keyframes scrollLeft {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-33.333%);
-              }
-            }
-            @keyframes scrollRight {
-              0% {
-                transform: translateX(-33.333%);
-              }
-              100% {
-                transform: translateX(0);
-              }
-            }
-            .animate-scroll-left {
-              animation: scrollLeft 20s linear infinite;
-            }
-            .animate-scroll-right {
-              animation: scrollRight 20s linear infinite;
-            }
-          `}</style>
-
-          {/* Riga superiore - scorre da sinistra a destra */}
-          <div className="overflow-hidden w-full">
-            <div className="flex gap-3 md:gap-4 animate-scroll-right">
-              {topImagesLoop.map((image, index) => (
-                <div
-                  key={`top-${index}`}
-                  className="flex-shrink-0 w-[140px] h-[180px] md:w-[180px] md:h-[240px] relative"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover rounded-xl shadow-lg"
-                    onLoad={() => index === 0 && setIsLoaded(true)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Riga inferiore - scorre da destra a sinistra */}
-          <div className="overflow-hidden w-full">
-            <div className="flex gap-3 md:gap-4 animate-scroll-left">
-              {bottomImagesLoop.map((image, index) => (
-                <div
-                  key={`bottom-${index}`}
-                  className="flex-shrink-0 w-[140px] h-[180px] md:w-[180px] md:h-[240px] relative"
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover rounded-xl shadow-lg"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Griglia di immagini dinamica */}
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 w-full lg:max-w-[600px] relative">
+          {visibleImages.map((image, index) => (
+            <FadeImage
+              key={`${image.src}-${index}`}
+              src={image.src}
+              alt={image.alt}
+            />
+          ))}
         </div>
       </div>
     </section>
+  );
+};
+
+// 🔹 Componente immagine con effetto dissolvenza
+const FadeImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(false);
+    const timeout = setTimeout(() => setLoaded(true), 50);
+    return () => clearTimeout(timeout);
+  }, [src]);
+
+  return (
+    <div className="relative w-full h-[200px] md:h-[260px] overflow-hidden rounded-2xl shadow-lg">
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setLoaded(true)}
+        className={`w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
+          loaded ? "opacity-100" : "opacity-0"
+        }`}
+      />
+    </div>
   );
 };
 

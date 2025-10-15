@@ -110,7 +110,7 @@ const Sidebar = ({ onNavigate }: SidebarProps) => {
         }`}
       >
         {/* Logo desktop */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-0">
           {isOpen ? (
             <img
               src="/img/logo_marco_dark.png"
