@@ -44,9 +44,16 @@ const HeroSection = () => {
       </div>
 
       {/* Contenuto principale */}
-      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-[1200px] gap-12 mt-16 lg:mt-32">
-        {/* Colonna testo */}
-        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 w-full lg:max-w-[600px] relative">
+      <div
+        className="
+          flex flex-col-reverse lg:flex-row
+          items-center justify-center
+          w-full max-w-[1200px] gap-12
+          mt-16 lg:mt-32
+        "
+      >
+        {/* 🔸 Colonna immagini (sinistra su desktop, sotto su mobile) */}
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 w-full lg:max-w-[600px]">
           {visibleImages.map((image, index) => (
             <FadeImage
               key={`${image.src}-${index}`}
@@ -55,6 +62,8 @@ const HeroSection = () => {
             />
           ))}
         </div>
+
+        {/* 🔸 Colonna testo (destra su desktop, sopra su mobile) */}
         <div className="flex-1 max-w-[500px] text-center lg:text-left">
           <h1 className="text-4xl md:text-6xl font-bold text-dark-brown leading-tight mb-6">
             Tradizione artigianale e design contemporaneo
@@ -65,14 +74,12 @@ const HeroSection = () => {
             contemporaneo.
           </p>
         </div>
-
-        {/* Griglia immagini dinamica */}
       </div>
     </section>
   );
 };
 
-// 🔹 Immagine con effetto dissolvenza
+// 🔹 Componente immagine con effetto dissolvenza
 const FadeImage = ({ src, alt }: { src: string; alt: string }) => {
   const [loaded, setLoaded] = useState(false);
 
