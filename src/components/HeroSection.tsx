@@ -1,34 +1,30 @@
 import { useEffect, useState } from "react";
 
 const HeroSection = () => {
-  // Tutte le immagini disponibili
   const allImages = [
-    { src: "/img/lizzano/Lizzano1.jpg", alt: "Design contemporaneo" },
-    { src: "/img/lizzano/Lizzano2.jpg", alt: "Poltrona moderna di design" },
-    { src: "/img/lizzano/Lizzano3.jpg", alt: "Arredo contemporaneo" },
-    { src: "/img/lizzano/Lizzano4.jpg", alt: "Soluzione di design" },
-    { src: "/img/lizzano/Lizzano5.jpg", alt: "Artigianato italiano" },
+    { src: "/img/lizzano/Lizzano2.jpg", alt: "Design contemporaneo" },
+    { src: "/img/lizzano/Lizzano1.jpg", alt: "Poltrona moderna di design" },
+    { src: "/img/attrezzata/IMG_2857.jpg", alt: "Arredo contemporaneo" },
+    { src: "/img/mansarda/IMG_2868.jpg", alt: "Soluzione di design" },
+    { src: "/img/ponte/IMG_4139.jpg", alt: "Artigianato italiano" },
+    { src: "/img/ponte/IMG_4075.jpg", alt: "Artigianato italiano" },
+    { src: "/img/foto_falegnameria/IMG_5043.jpg", alt: "Artigianato italiano" },
+    { src: "/img/foto_falegnameria/IMG_5039.jpg", alt: "Artigianato italiano" },
   ];
 
-  // Stato per le 4 immagini attualmente visibili
   const [visibleImages, setVisibleImages] = useState(allImages.slice(0, 4));
-
-  // Indice per tenere traccia di dove siamo nell’elenco
   const [nextIndex, setNextIndex] = useState(4);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // scegli un'immagine casuale tra le 4 da sostituire
       const randomSlot = Math.floor(Math.random() * 4);
       const newImages = [...visibleImages];
-
-      // prendi la prossima immagine (ciclo)
       const newImage = allImages[nextIndex % allImages.length];
 
       newImages[randomSlot] = newImage;
       setVisibleImages(newImages);
       setNextIndex((prev) => (prev + 1) % allImages.length);
-    }, 3000); // ogni 3 secondi cambia una
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [visibleImages, nextIndex]);
@@ -36,10 +32,29 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="flex items-center justify-center bg-gradient-to-br from-light-cream to-warm-beige px-6 min-h-[70vh] lg:min-h-screen py-10 lg:py-0 overflow-hidden"
+      className="relative flex items-center justify-center bg-gradient-to-br from-light-cream to-warm-beige px-6 min-h-[70vh] lg:min-h-screen py-10 lg:py-0 overflow-hidden"
     >
-      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-[1200px] gap-12">
-        {/* Contenuto testuale */}
+      {/* 🔹 Logo centrato visibile solo su desktop */}
+      <div className="hidden lg:flex absolute top-10 left-1/2 -translate-x-1/2 z-20">
+        <img
+          src="/img/logo_marco_dark.png"
+          alt="Logo aziendale"
+          className="w-60 xl:w-80 object-contain drop-shadow-md"
+        />
+      </div>
+
+      {/* Contenuto principale */}
+      <div className="flex flex-col lg:flex-row items-center justify-center w-full max-w-[1200px] gap-12 mt-16 lg:mt-32">
+        {/* Colonna testo */}
+        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 w-full lg:max-w-[600px] relative">
+          {visibleImages.map((image, index) => (
+            <FadeImage
+              key={`${image.src}-${index}`}
+              src={image.src}
+              alt={image.alt}
+            />
+          ))}
+        </div>
         <div className="flex-1 max-w-[500px] text-center lg:text-left">
           <h1 className="text-4xl md:text-6xl font-bold text-dark-brown leading-tight mb-6">
             Tradizione artigianale e design contemporaneo
@@ -51,22 +66,13 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* Griglia di immagini dinamica */}
-        <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-4 w-full lg:max-w-[600px] relative">
-          {visibleImages.map((image, index) => (
-            <FadeImage
-              key={`${image.src}-${index}`}
-              src={image.src}
-              alt={image.alt}
-            />
-          ))}
-        </div>
+        {/* Griglia immagini dinamica */}
       </div>
     </section>
   );
 };
 
-// 🔹 Componente immagine con effetto dissolvenza
+// 🔹 Immagine con effetto dissolvenza
 const FadeImage = ({ src, alt }: { src: string; alt: string }) => {
   const [loaded, setLoaded] = useState(false);
 
