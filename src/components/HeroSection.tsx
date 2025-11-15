@@ -99,7 +99,6 @@ const FadeImage = ({ src, alt }: { src: string; alt: string }) => {
           loaded ? "opacity-100" : "opacity-0"
         }`}
       />
-      ciao
     </div>
   );
 };
